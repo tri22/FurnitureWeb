@@ -1,0 +1,16 @@
+.horizontal-scroll {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  gap: 16px;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+}
+.card-item {
+  flex: 0 0 auto;
+  width: 18rem;
+  scroll-snap-align: start;
+}
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
