@@ -20,6 +20,7 @@ function NavComponent() {
             <Nav.Link href="/Shop">Shop</Nav.Link>
             <Nav.Link href="/Checkout">Checkout</Nav.Link>
             <Nav.Link href="/Contact">Contact</Nav.Link>
+            <Nav.Link href="/Blogs">Blogs</Nav.Link>
           </Nav>
 
           <InputGroup className="w-25 me-3">
