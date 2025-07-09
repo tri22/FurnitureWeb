@@ -115,7 +115,7 @@ export default function Shop() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={'img/sliders/slider_4.png'}
+                        src={'img/sliders/slider_2.png'}
                         alt="First slide"
                         style={{
                             width: '100%',
@@ -125,8 +125,8 @@ export default function Shop() {
 
                     />
                     <Carousel.Caption>
-                        <h3 style={{ color: 'black' }}>Shop</h3>
-                        <p style={{ color: 'black' }}>Home/ Shop</p>
+                        <h3 style={{ color: 'white' }}>Shop</h3>
+                        <p style={{ color: 'white' }}>Home/ Shop</p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
