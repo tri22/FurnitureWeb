@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdOutlineStar, MdShoppingCart } from "react-icons/md";
 import '../assets/style/home.scss'
+import { useNavigate } from "react-router-dom";
 
 const products = [
     {
@@ -129,6 +130,7 @@ const blogs = [
 
 
 const Home = () => {
+    const navigate = useNavigate()
     return (
         <div className="w-100">
             <NavComponent></NavComponent>
@@ -181,7 +183,7 @@ const Home = () => {
                 <h1 className="my-2">Our Products</h1>
                 <Row className="px-5">
                     {products.map((item) => (
-                        <Col key={item.id} xs={12} sm={6} md={4} lg={3} className="p-4">
+                        <Col key={item.id} xs={12} sm={6} md={4} lg={3} className="p-4"onClick={() => navigate(`/product/${item.id}`)}>
                             <Card style={{ padding: 0, height: '400px', width: '250px' }}>
                                 <Card.Img
                                     variant="top"
