@@ -53,7 +53,10 @@ const Checkout = () => {
                                     </Form.Group>
                                 </Col>
                             </Row>
-
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label className="d-flex justify-content-start">Address</Form.Label>
+                                <Form.Control type="text" placeholder="Your address" />
+                            </Form.Group>
                             <Row>
                                 <Col md={6}>
                                     <Form.Group className="mb-3">

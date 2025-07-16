@@ -46,9 +46,9 @@ function NavComponent() {
           </Dropdown>
           <Nav>
             <NavDropdown title="User" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#profile">My profile</NavDropdown.Item>
-              <NavDropdown.Item href="#address">My address</NavDropdown.Item>
-              <NavDropdown.Item href="#settings">Settings</NavDropdown.Item>
+              <NavDropdown.Item href="/MyProfile">My profile</NavDropdown.Item>
+              <NavDropdown.Item href="#address">My Orders</NavDropdown.Item>
+              <NavDropdown.Item href="/AdminHome">Admin</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
             </NavDropdown>
