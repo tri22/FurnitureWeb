@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+import productApi from "../../api/productApi";
 const products = [
     {
         id: 1,
@@ -91,17 +93,31 @@ const products = [
 
 export default products;
 
-
 export type Product = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  color: string;
-  rating: number;
-  category: {
     id: number;
     name: string;
-  };
+    description: string;
+    price: number;
+    image: string;
+    rating: number;
+    categoryName: string;
 };
+
+
+export const fetchProductData = async (): Promise<Product[]> => {
+    try {
+        const response = await productApi.getAllProduct();
+        return response.data.result.map((item: any) => ({
+            id: item.id,
+            name: item.name,
+            description: item.description,
+            price: item.price,
+            image: item.image,
+            rating: item.rating,
+            categoryName: item.categoryName,
+        }));
+    } catch (error:any) {
+        toast.error("Lỗi khi lấy sản phẩm:", error);
+        return [];
+    }
+}

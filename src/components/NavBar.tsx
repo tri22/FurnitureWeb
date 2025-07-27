@@ -5,10 +5,22 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { MdShoppingCart } from "react-icons/md";
 import CartPreview from './CartPreview';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../api/AuthContext';
 
 function NavComponent() {
+  const navigate = useNavigate();
+  const { role, isLoggedIn, resetAuth } = useAuth();
+  const logout = () => {
+    resetAuth();
+    navigate('/login');
+  };
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary w-100">
+    <Navbar
+      expand="lg"
+      className="bg-white text-dark w-100 position-fixed top-0 start-0 z-3"
+    >
       <Container className="justify-content-between">
         <Navbar.Brand href="#home">Livora</Navbar.Brand>
 
@@ -19,8 +31,8 @@ function NavComponent() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/Shop">Shop</Nav.Link>
             <Nav.Link href="/Checkout">Checkout</Nav.Link>
-            <Nav.Link href="/Contact">Contact</Nav.Link>
             <Nav.Link href="/Blogs">Blogs</Nav.Link>
+            <Nav.Link href="/Contact">Contact</Nav.Link>
           </Nav>
 
           <InputGroup className="w-25 me-3">
@@ -48,15 +60,25 @@ function NavComponent() {
             <NavDropdown title="User" id="basic-nav-dropdown">
               <NavDropdown.Item href="/MyProfile">My profile</NavDropdown.Item>
               <NavDropdown.Item href="#address">My Orders</NavDropdown.Item>
-              <NavDropdown.Item href="/AdminHome">Admin</NavDropdown.Item>
+              {role=='ADMIN'&&(
+                <NavDropdown.Item href="/AdminHome">Admin</NavDropdown.Item>
+              )}
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
+              {isLoggedIn && (
+                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+              )}
+              {!isLoggedIn && (
+                <NavDropdown.Item href="/Login">Login</NavDropdown.Item>
+              )}
+
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }
 
 export default NavComponent;
+
+

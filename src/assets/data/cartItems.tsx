@@ -21,5 +21,9 @@ const cartItems = [
     quantity: 3,
   }
 ];
-
+export type CartItem = {
+  id: number;
+  quantity: number;
+  productId: number
+};
 export default cartItems;

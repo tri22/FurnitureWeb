@@ -4,5 +4,5 @@ export type User = {
     email: string;
     phone: string;
     birthday: string; // hoặc Date nếu bạn parse
-    role: "ADMIN" | "USER";
+    role: string;
 };

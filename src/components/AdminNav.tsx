@@ -24,9 +24,8 @@ const TopNavbar = ( {title}:NavProps ) => {
       </Col>
       <Col md={5}></Col>
       {/* Right: Notification, Language, User */}
-      <Col md={3}>
+      <Col md={3} >
         <Row className="justify-between">
-          
           {/* User Info */}
           <Col>
             <Dropdown>
@@ -38,9 +37,9 @@ const TopNavbar = ( {title}:NavProps ) => {
                 <Dropdown.Item as={Link} to="/Profile">
                   Profile
                 </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/AdminHome">
+                <Dropdown.Item as={Link} to="/">
                   {/* Hiển thị thông tin người dùng */}
-                  Admin
+                  Home
                 </Dropdown.Item>
                 <Dropdown.Item onClick={logout}>
                   Logout

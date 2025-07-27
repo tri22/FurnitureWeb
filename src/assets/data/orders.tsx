@@ -1,9 +1,6 @@
 export type Order = {
   id: number;
-  user: {
-    id: number;
-    name: string;
-  };
+  userId: number;
   totalPrice: number;
   orderDate: string;        
   totalQuantity: number;
