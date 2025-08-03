@@ -18,13 +18,19 @@ export type UserUpdate = {
     dateOfBirth: Date; 
 };
 
+export type PasswordUpdate = {
+    oldPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+};
+
 
 export type Address = {
-    id:number;
-    street:string;
-    city:string;
-    ward:string;
-    district:string;
+    id?:number;
+    street?:string;
+    city?:string;
+    ward?:string;
+    district?:string;
 };
 
 
