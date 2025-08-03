@@ -1,3 +1,4 @@
+import type { User } from "../assets/data/users";
 import axiosInstance from "./axiosInstance";
 
 export const loginApi = async ( username:string, password:string ) => {
@@ -35,10 +36,10 @@ export const introspectApi = async (token:string) => {
     }
 };
 
-export const currentUser = async () => {
+export const currentUser = async () :Promise<User> => {
     try {
         const response = await axiosInstance.get("/users/me");
-        return response.data;
+        return response.data.result;
     } catch (error) {
         console.error("Error get user", error); // Log error chi tiết
         throw error;

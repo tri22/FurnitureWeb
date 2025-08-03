@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, useContext, type ReactNode } from "react";
-import { currentUser } from './authApi';
 import type { User } from "../assets/data/users";
 interface LoginResponse {
   token: string;
@@ -65,21 +64,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.log("Check call api:", data);
       const newToken = data.token;
       const updateRole = data.role;
-
       console.log("Saved role Update:", updateRole);
+      const now = new Date();
+      const expiryTime = now.getTime() + 3600000;
 
       localStorage.setItem("token", newToken);
       localStorage.setItem("role", updateRole);
-
+      localStorage.setItem("token_expiry", expiryTime.toString());
       setToken(newToken);
       setRole(updateRole); // Cập nhật role ngay lập tức
       setIsLoggedIn(true);
-
-      const userInfo = await currentUser();
-      console.log(userInfo.result)
-      setUser(userInfo.result);
-      localStorage.setItem("user", JSON.stringify(userInfo.result)); // optional
-
     } catch (error) {
       console.error("Error saving token to localStorage:", error);
     }
@@ -89,11 +83,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       localStorage.removeItem("token");
       localStorage.removeItem("role");
+      localStorage.removeItem("user");
+      localStorage.removeItem("token_expiry");
       setIsLoggedIn(false);
-
       setRole("");
       setUser(null);
-      localStorage.removeItem("user");
+      setToken("");
     } catch (error) {
       console.error("Error removing token from localStorage:", error);
     }
@@ -103,16 +98,37 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       localStorage.removeItem("token");
       localStorage.removeItem("role");
+      localStorage.removeItem("user");
+      localStorage.removeItem("token_expiry");
       setIsLoggedIn(false);
-
       setRole("");
       setUser(null);
-      localStorage.removeItem("user");
+      setToken("");
+      
       console.log("Đã xóa token và đặt lại trạng thái đăng nhập.");
     } catch (error) {
       console.error("Không thể xóa token:", error);
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const expiryStr = localStorage.getItem("token_expiry");
+      if (expiryStr) {
+        const expiryTime = parseInt(expiryStr, 10);
+        const now = new Date().getTime();
+
+        if (now > expiryTime) {
+          console.log("Token đã hết hạn. Đăng xuất tự động.");
+          resetAuth();
+          clearInterval(interval); // Dừng kiểm tra sau khi logout
+        }
+      }
+    }, 30000); // Kiểm tra mỗi 30 giây
+
+    return () => clearInterval(interval); // Cleanup khi component bị unmount
+  }, []);
+
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout, role, token, resetAuth, user }}>

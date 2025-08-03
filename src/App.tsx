@@ -4,7 +4,7 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Shop from './pages/Shop'
 import ProductDetail from './pages/ProductDetail'
-import Cart from './pages/Cart'
+
 import Checkout from './pages/Checkout'
 import Contact from './pages/Contact'
 import Blogs from './pages/Blog'
@@ -19,6 +19,12 @@ import ProductManagement from './pages/ProductManagement'
 import UserManagement from './pages/UserManagement'
 import { AuthProvider } from './api/AuthContext'
 import Login from './pages/Login'
+import MyOrders from './pages/MyOrders'
+import MyCart from './pages/Cart'
+import OrderDetail from './pages/OrderDetail'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 function App() {
 
 
@@ -30,12 +36,14 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/Shop" element={<Shop />} />
           <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/Cart" element={<Cart />} />
+          <Route path="/Cart" element={<MyCart />} />
           <Route path="/Checkout" element={<Checkout />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Blogs" element={<Blogs />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/MyProfile" element={<MyProfile />} />
+          <Route path="/MyOrder" element={<MyOrders />} />
+          <Route path="/Order/:id" element={<OrderDetail />} />
           {/* admin pages */}
           <Route path="/AdminHome" element={<AdminHome />} />
           <Route path="/OrderManagement" element={<OrderManagement />} />
@@ -46,6 +54,7 @@ function App() {
           <Route path="/ProductStock" element={<ProductStock />} />
         </Routes>
       </>
+      <ToastContainer position="top-center" autoClose={1300} />
     </AuthProvider>
 
   )

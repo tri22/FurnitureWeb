@@ -25,9 +25,9 @@ const LoginPage = () => {
             // Xử lý đăng nhập
             try {
                 const data = await loginApi(trimmedUsername, trimmedPassword);
-                if (data.token) {
-                    login(data);
-                    setIsLogin(true);
+                if (data.result.token) {
+                    login(data.result);
+                    setIsLogin(true);         
                 } else {
                     setError("Username or password is incorrect");
                 }
